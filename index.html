@@ -41,21 +41,58 @@
 
         /* --- STAGE 1: THE KICK ANIMATION --- */
         .stage-box { text-align: center; width: 100%; position: relative; height: 300px; display: flex; align-items: center; justify-content: center;}
-        .candle-core { width: 10px; height: 50px; background: linear-gradient(to top, var(--warm-gold), #fff); border-radius: 5px; position: relative; box-shadow: 0 0 15px var(--warm-gold); }
-        .flame { width: 16px; height: 28px; background: radial-gradient(circle, #fff, var(--romantic-rose), transparent); border-radius: 50% 50% 20% 20%; position: absolute; top: -32px; left: -3px; box-shadow: 0 0 20px var(--romantic-rose); animation: flicker 0.1s infinite alternate; }
+
+        .candle-core {
+            width: 10px; height: 50px;
+            background: linear-gradient(to top, var(--warm-gold), #fff);
+            border-radius: 5px; position: relative;
+            box-shadow: 0 0 15px var(--warm-gold);
+        }
+
+        .flame {
+            width: 16px; height: 28px;
+            background: radial-gradient(circle, #fff, var(--romantic-rose), transparent);
+            border-radius: 50% 50% 20% 20%;
+            position: absolute; top: -32px; left: -3px;
+            box-shadow: 0 0 20px var(--romantic-rose);
+            animation: flicker 0.1s infinite alternate;
+        }
+
         @keyframes flicker { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
 
-        .number { font-family: 'Syncopate', sans-serif; font-size: 6rem; position: absolute; font-weight: 700; }
+        .number {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 6rem;
+            position: absolute;
+            font-weight: 700;
+        }
+
         #num-17 { color: rgba(255,255,255,0.2); opacity: 0; }
         #num-18 { color: var(--warm-gold); text-shadow: 0 0 30px var(--warm-gold); opacity: 0; z-index: 10; }
 
+        /* THE KICK ANIMATIONS */
         .kick-out-17 { animation: exit17 0.5s forwards ease-in; }
         .enter-18 { animation: enter18 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
 
-        @keyframes enter18 { 0% { opacity: 0; transform: scale(3) translateX(100px); filter: blur(10px); } 100% { opacity: 1; transform: scale(1) translateX(0); filter: blur(0); } }
-        @keyframes exit17 { 0% { opacity: 1; transform: translateX(0) rotate(0); } 100% { opacity: 0; transform: translateX(-300px) rotate(-45deg); } }
+        @keyframes enter18 {
+            0% { opacity: 0; transform: scale(3) translateX(100px); filter: blur(10px); }
+            100% { opacity: 1; transform: scale(1) translateX(0); filter: blur(0); }
+        }
 
-        #happy-text { font-family: 'Syncopate', sans-serif; font-size: 1.2rem; color: var(--romantic-rose); margin-top: 140px; opacity: 0; letter-spacing: 5px; position: absolute; }
+        @keyframes exit17 {
+            0% { opacity: 1; transform: translateX(0) rotate(0); }
+            100% { opacity: 0; transform: translateX(-300px) rotate(-45deg); }
+        }
+
+        #happy-text {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.2rem;
+            color: var(--romantic-rose);
+            margin-top: 140px;
+            opacity: 0;
+            letter-spacing: 5px;
+            position: absolute;
+        }
 
         /* --- STAGE 2: THE STORY --- */
         .story-page { display: none; flex-direction: column; justify-content: space-between; height: 85%; animation: slideIn 0.8s forwards ease-out; width: 100%; }
@@ -79,7 +116,7 @@
 
         .hidden { display: none !important; }
 
-        /* 🎵 UPDATED PLAYER CSS: Technically visible but off-screen */
+        /* 🎵 Invisible Player Style */
         #youtube-player { 
             position: absolute; 
             width: 1px; 
@@ -97,11 +134,16 @@
     <canvas id="bg-canvas"></canvas>
 
     <div class="main-container">
+        
         <div id="intro-stage" class="stage-box">
-            <div id="candle-wrap"><div class="candle-core"><div class="flame" id="flame"></div></div></div>
+            <div id="candle-wrap">
+                <div class="candle-core"><div class="flame" id="flame"></div></div>
+            </div>
+            
             <div id="num-17" class="number">17</div>
             <div id="num-18" class="number">18</div>
             <div id="happy-text">HAPPY 18TH</div>
+
             <button class="btn-next" id="startBtn" onclick="kickSequence()" style="position: absolute; bottom: -50px; border-color: var(--romantic-rose); color: var(--romantic-rose);">Blow & Level Up</button>
         </div>
 
@@ -115,20 +157,32 @@
 
             <div class="story-page active" id="p-0">
                 <h2>Happy Birthday, my love ❤️</h2>
-                <div class="content">On this special day, I just want to remind you how <b>incredibly important</b> you are to me. You’re my safe place, my happiness, and the most beautiful part of my life.</div>
+                <div class="content">
+                    On this special day, I just want to remind you how <b>incredibly important</b> you are to me. 
+                    You’re not just my girlfriend — you’re my safe place, my happiness, and the most beautiful part of my life.
+                </div>
                 <button class="btn-next" onclick="go(1)">Next</button>
             </div>
 
             <div class="story-page" id="p-1">
                 <h2>From My Heart</h2>
-                <div class="content">I know I’ve hurt you at times. I know there were moments when I made you sad, and for that, I’m truly sorry. My love for you has always been real, deep, and constant.</div>
+                <div class="content">
+                    I know I’ve hurt you at times. I know there were moments when I made you sad, and for that, I’m truly sorry. 
+                    But please believe me: my love for you has always been real, deep, and constant. 
+                    I’m still learning, still growing, and trying to be a better man for you.
+                </div>
                 <button class="btn-next" onclick="go(2)">Continue</button>
             </div>
 
             <div class="story-page" id="p-2">
                 <h2>My Promise</h2>
                 <div class="content">
-                    <div class="poem">In your smile, I find my peace,<br>In your eyes, my future shines.<br>Even when the road feels rough,<br>I’ll hold your hand through all our times.</div>
+                    <div class="poem">
+                        In your smile, I find my peace,<br>
+                        In your eyes, my future shines.<br>
+                        Even when the road feels rough,<br>
+                        I’ll hold your hand through all our times.
+                    </div>
                     I hope we continue to grow together — to understand each other better, to forgive faster.
                 </div>
                 <button class="btn-next" onclick="go(3)">Final Page</button>
@@ -136,7 +190,12 @@
 
             <div class="story-page" id="p-3">
                 <h2>Forever Choice</h2>
-                <div class="content">We may argue, we may misunderstand sometimes, but I hope at the end of every day, <b>we choose each other</b>. I love you more than I know how to express.<br><br><center><b style="color:var(--romantic-rose)">Happy 18th Birthday, my world. 💖</b></center></div>
+                <div class="content">
+                    We may argue, we may misunderstand sometimes, but I hope at the end of every day, <b>we choose each other</b>. 
+                    I love you more than I sometimes know how to express.
+                    <br><br>
+                    <center><b style="color:var(--romantic-rose)">Happy 18th Birthday, my world. 💖</b></center>
+                </div>
                 <button class="btn-next" onclick="finalConfetti()">Finish ❤️</button>
             </div>
         </div>
@@ -144,37 +203,36 @@
 
     <script>
         // --- 🎵 YOUTUBE API LOGIC (START AT 0:30) ---
-    var player;
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        var player;
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('youtube-player', {
-            height: '1',
-            width: '1',
-            videoId: 'dIXkFnjz0IE',
-            playerVars: {
-                'start': 30,       // Starts at 30 seconds
-                'autoplay': 0,
-                'controls': 0,
-                'playsinline': 1
-            }
-        });
-    }
-
-    function kickSequence() {
-        // Trigger the music at 30s mark
-        if (player && player.playVideo) {
-            player.seekTo(30);
-            player.playVideo();
-            player.setVolume(100);
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                height: '1',
+                width: '1',
+                videoId: 'dIXkFnjz0IE',
+                playerVars: {
+                    'start': 30, // Start at 30 seconds
+                    'autoplay': 0,
+                    'controls': 0,
+                    'disablekb': 1,
+                    'fs': 0,
+                    'modestbranding': 1,
+                    'playsinline': 1,
+                    'rel': 0
+                },
+                events: {
+                    'onReady': function(event) {
+                        console.log("Player ready");
+                    }
+                }
+            });
         }
 
-        // ... Keep the rest of your kickSequence() animations below this ...
-
-        // Background Particles
+        // BG Animation
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let dots = [];
@@ -190,9 +248,11 @@
         init(); animate();
 
         function kickSequence() {
-            // Force music to play on first click
+            // Play music starting from 30s
             if (player && player.playVideo) {
+                player.seekTo(30);
                 player.playVideo();
+                player.setVolume(100);
             }
 
             const flame = document.getElementById('flame');
@@ -203,21 +263,30 @@
             const btn = document.getElementById('startBtn');
 
             btn.style.display = 'none';
+
+            // 1. Blow Out
             flame.style.transition = "0.3s";
             flame.style.opacity = "0";
             flame.style.transform = "scale(0)";
 
             setTimeout(() => {
                 candle.style.display = 'none';
+                // 2. Show 17
                 n17.style.opacity = "1";
+                
                 setTimeout(() => {
+                    // 3. 18 Kicks 17!
                     n18.classList.add('enter-18');
                     n17.classList.add('kick-out-17');
+
                     setTimeout(() => {
+                        // 4. Happy Text Fades in
                         happy.style.transition = "1s";
                         happy.style.opacity = "1";
                         happy.style.transform = "translateY(-10px)";
                         confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: ['#ff6b81', '#f7d794'] });
+
+                        // 5. Switch to Story
                         setTimeout(() => {
                             document.getElementById('intro-stage').style.opacity = '0';
                             setTimeout(() => {
@@ -246,6 +315,4 @@
         }
     </script>
 </body>
-
 </html>
-
