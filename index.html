@@ -143,30 +143,36 @@
     </div>
 
     <script>
-        // --- 🎵 ROBUST YOUTUBE PLAYER LOGIC ---
-        var player;
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        // --- 🎵 YOUTUBE API LOGIC (START AT 0:30) ---
+    var player;
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('youtube-player', {
-                'start': 30,
-                height: '1',
-                width: '1',
-                videoId: 'dIXkFnjz0IE',
-                playerVars: {
-                    'autoplay': 0,
-                    'controls': 0,
-                    'disablekb': 1,
-                    'fs': 0,
-                    'modestbranding': 1,
-                    'playsinline': 1, // Required for iOS
-                    'rel': 0
-                }
-            });
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('youtube-player', {
+            height: '1',
+            width: '1',
+            videoId: 'dIXkFnjz0IE',
+            playerVars: {
+                'start': 30,       // Starts at 30 seconds
+                'autoplay': 0,
+                'controls': 0,
+                'playsinline': 1
+            }
+        });
+    }
+
+    function kickSequence() {
+        // Trigger the music at 30s mark
+        if (player && player.playVideo) {
+            player.seekTo(30);
+            player.playVideo();
+            player.setVolume(100);
         }
+
+        // ... Keep the rest of your kickSequence() animations below this ...
 
         // Background Particles
         const canvas = document.getElementById('bg-canvas');
@@ -242,3 +248,4 @@
 </body>
 
 </html>
+
